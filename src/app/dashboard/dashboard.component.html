@@ -1,0 +1,11 @@
+<h2>Dashboard</h2>
+
+<div id="dash-content">
+  <h3>Polls</h3>
+  <ul>
+    <li *ngFor="let poll of polls">
+      <p>{{poll.displayName}}<br/></p>
+      <p>{{poll.question.description}}</p>
+    </li>
+  </ul>
+</div>
