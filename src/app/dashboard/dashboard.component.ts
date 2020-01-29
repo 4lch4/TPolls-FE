@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private pollService: PollService) { }
 
   ngOnInit() {
+    // this.
     this.getPolls();
   }
 

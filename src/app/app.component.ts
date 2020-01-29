@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -10,25 +11,22 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 export class AppComponent {
   private mobileQueryListener: () => void;
   mobileQuery: MediaQueryList;
-  username: string;
+  username = '4lch4';
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private cookies: CookieService
+  ) {
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQuery.addListener(this.mobileQueryListener);
   }
 
-  ngAfterViewInit(): void {
-    this.poll();
-  }
-
-  async poll() {
-    await this.sleep(5000);
-    this.username = '4lch4';
-  }
-
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+  ngOnInit(): void {
+    this.cookies.set('apiKey', 'oreriutvalkaraprurhasvuzuheledsekeciepvubacvizoruva');
+    this.cookies.set('client-id', 'e5ab1a27-09d0-4569-bd48-0f69ab223441');
+    this.cookies.set('username', '4lch4');
   }
 
   ngOnDestroy(): void {

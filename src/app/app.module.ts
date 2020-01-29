@@ -17,8 +17,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
+import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PollsDetailComponent } from './polls-detail/polls-detail.component';
 import { PollsComponent } from './polls/polls.component';
@@ -51,7 +52,7 @@ import { PollsComponent } from './polls/polls.component';
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

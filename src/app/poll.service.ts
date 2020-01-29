@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Poll } from './models/polls';
@@ -9,16 +10,19 @@ import { Poll } from './models/polls';
 })
 export class PollService {
   private baseUrl = 'https://tpolls.app/api/v1';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Api-Key': 'oreriutvalkaraprurhasvuzuheledsekeciepvubacvizoruva'
-    })
-  };
-  clientId = 'e5ab1a27-09d0-4569-bd48-0f69ab223441';
+  httpOptions: object;
+  clientId: string;
   teamId = '90377b44-72a1-49f8-b70e-fb310eb58f04';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookies: CookieService) {
+    this.clientId = this.cookies.get('client-id');
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Api-Key': this.cookies.get('apiKey')
+      })
+    };
+  }
 
   getPolls(): Observable<Poll[]> {
     return this.http.get<Poll[]>(`${this.baseUrl}/polls/${this.clientId}/${this.teamId}`, this.httpOptions).pipe(
