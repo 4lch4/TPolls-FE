@@ -1,1 +1,21 @@
-<p>polls works!</p>
+<div class="polls-container">
+  <!-- <div class="container-fluid"> -->
+    <mat-card style="margin: 25px;" *ngFor="let poll of polls">
+      <mat-card-title>{{poll.displayName}}</mat-card-title>
+      <mat-card-subtitle *ngIf="poll.description">{{poll.description}}</mat-card-subtitle>
+
+      <mat-card-content>
+        {{poll.question.title}}<br/><br/>
+
+        {{poll.question.description}}
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button color="primary">Edit</button>
+        <button mat-button color="primary">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  <!-- </div> -->
+
+  <button mat-fab color="primary" class="mat-fab-bottom-right"><mat-icon>add</mat-icon></button>
+</div>
